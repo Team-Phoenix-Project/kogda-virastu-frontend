@@ -66,7 +66,7 @@ const ArticleActionsContainer = styled.div`
   && > button {
     /* width:233px; */
     @media screen  and (max-width:725px) {
-      width:175px;
+      /* width:175px; */
     }
   }
 `;

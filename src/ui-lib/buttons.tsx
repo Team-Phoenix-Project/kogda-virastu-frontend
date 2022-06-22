@@ -51,8 +51,10 @@ export const BasicNormalButton = styled.button<TBasicButtonProps>`
     }
   `;
 
-const PublishNormalButton = styled(BasicNormalButton)`
-  /* width: 137px !important; */
+const RemovePublishNormalButton = styled(BasicNormalButton)`
+    @media (max-width: 640px) {
+      margin-top: 16px;
+}
 `;
 
 const BasicInvertedButton = styled.button<TBasicButtonProps>`
@@ -120,43 +122,41 @@ export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false })
 };
 
 export const PublishAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
-  const theme = useTheme();
   return (
-    <PublishNormalButton
+    <BasicNormalButton
       colorScheme='blue'
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
         <FormattedMessage id='publish' />
       </RegularText>
-    </PublishNormalButton>
+    </BasicNormalButton>
   );
 };
 
 export const RejectAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
   return (
-    <PublishNormalButton
+    <BasicNormalButton
       colorScheme='red'
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
         <FormattedMessage id='decline' />
       </RegularText>
-    </PublishNormalButton>
+    </BasicNormalButton>
   );
 };
 
 export const PublishedAdminPostButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = true }) => {
-  const theme = useTheme();
   return (
-    <PublishNormalButton
+    <BasicNormalButton
       colorScheme='blue'
       disabled={disabled}>
       <RegularText size='large' weight={400} sansSerif>
         <FormattedMessage id='published' />
       </RegularText>
-    </PublishNormalButton>
+    </BasicNormalButton>
   );
 };
 
@@ -166,14 +166,14 @@ export const RemovePublicationAdminPostButton: FC<TButtonProps> = ({
 }) => {
   const theme = useTheme();
   return (
-    <PublishNormalButton
+    <RemovePublishNormalButton
       colorScheme='red'
       disabled={disabled}
       onClick={onClick}>
       <RegularText size='large' weight={400} sansSerif>
         <FormattedMessage id='removePublish' />
       </RegularText>
-    </PublishNormalButton>
+    </RemovePublishNormalButton>
   );
 };
 

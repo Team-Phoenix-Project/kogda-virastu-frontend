@@ -19,7 +19,7 @@ const createCommentThunk: AppThunk = (slug: string) => async (dispatch, getState
     if (newComment) {
       dispatch(commentPostRequested());
       const { data: { comment } } = await postComment(slug, newComment);
-      await publishCommentsAdmin(slug, comment.id);
+      // await publishCommentsAdmin(slug, comment.id);
       batch(() => {
         dispatch(setViewCommentsFeed([comment]));
         dispatch(resetComment());
