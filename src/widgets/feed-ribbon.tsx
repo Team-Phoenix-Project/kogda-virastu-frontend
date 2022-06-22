@@ -250,7 +250,7 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
           </NavLink>
           {isAdmin && (
             <NavLink to='/moderation' style={activeLink}>
-              На модерации
+              На&nbsp;модерации
             </NavLink>
           )}
         </Links>

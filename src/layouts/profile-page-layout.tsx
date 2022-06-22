@@ -7,9 +7,11 @@ const ProfilePageLayout = styled.section`
     align-items: center;
     background-color: transparent;
     padding-bottom: 155px;
-    @media screen and (max-width: 768px){
-        padding-bottom: 0 20px 100px;
-    }
+
+        @media screen and (max-width: 768px){
+            padding: 0 20px 100px;
+            box-sizing: border-box;
+        }
 `;
 
 export default ProfilePageLayout;
