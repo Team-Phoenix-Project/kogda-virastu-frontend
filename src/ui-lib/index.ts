@@ -39,6 +39,7 @@ import {
   ConfirmDeleteButtonModal,
   MenuNewPostButton,
   MenuSettingsButton,
+  MenuAdministartionButton,
   MenuLogoutButton,
 } from './buttons';
 
@@ -54,14 +55,17 @@ import {
   FieldNick,
   InvitionCode,
   FieldProfileImage,
-}
-  from './inputs/input-fields';
+} from './inputs/input-fields';
+
 import {
   FieldTextComment,
   FieldAboutArticle,
   FieldAboutUser,
   FieldTextArticle,
 } from './inputs/textarea-fields';
+
+import CheckBox from './inputs/checkbox-fields'
+
 import {
   HeaderOneText,
   HeaderTwoText,
@@ -124,6 +128,7 @@ export {
   FieldTextArticle,
   FieldAboutUser,
   FieldAboutArticle,
+  CheckBox,
   HeaderOneText,
   HeaderTwoText,
   HeaderThreeText,
@@ -132,6 +137,7 @@ export {
   RegularText,
   MenuNewPostButton,
   MenuSettingsButton,
+  MenuAdministartionButton,
   MenuLogoutButton,
   FieldTextComment,
   ArrowLeft,

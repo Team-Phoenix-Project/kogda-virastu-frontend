@@ -5,6 +5,8 @@ import {
   blueHover,
   dividerGray,
   greySecondary,
+  greyHover,
+  greyActive,
   hoverUserMenuColor,
   mainBgColor,
   primaryBlack,
@@ -61,6 +63,9 @@ const themeLight: TTheme = {
     borderActive: grey,
     disabledInput: paleGrey,
     errorColor: redAccess,
+    checkBox: greySecondary,
+    checkBoxHover: greyHover,
+    checkBoxActive: greyActive,
   },
   button: {
     blue: {

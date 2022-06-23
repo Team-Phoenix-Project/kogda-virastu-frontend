@@ -7,6 +7,16 @@ export type TUser = {
   roles?: Array<string>;
 };
 
+export type TUserData = {
+  _id: string;
+  bio: string;
+  nickname: string;
+  username: string;
+  email: string;
+  image: string;
+  roles: string[];
+};
+
 // Исправлено и переименовано по модели данных сервера
 export type TProfile = {
   following: boolean;
@@ -66,3 +76,10 @@ export enum UserArticlesTypes {
 }
 
 export type TTag = string;
+
+export type TTopTag = {
+  count: number;
+  name: string;
+};
+
+export type TTopTags = Array<TTopTag>;

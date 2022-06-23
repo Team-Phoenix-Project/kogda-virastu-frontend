@@ -49,7 +49,7 @@ import {
 import {
   setAllArticles,
   setAllArticlesCount,
-  setAllTags,
+  setAllTopTags,
   clearArticles,
   clearTags,
   clearAll,
@@ -58,6 +58,12 @@ import {
 } from './allSlice';
 
 import { setUser, clearUser } from './userSlice';
+
+import {
+  setAllUsers,
+  clearAllUsers,
+  updateUser,
+} from './usersSlice';
 
 import { setComment, resetComment } from './commentFormSubSlice';
 
@@ -106,6 +112,12 @@ import {
   userPatchRequested,
   userPatchSucceeded,
   userPatchFailed,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  userRolesPatchRequested,
+  userRolesPatchSucceeded,
+  userRolesPatchFailed,
   publicFeedRequested,
   publicFeedSucceeded,
   publicFeedFailed,
@@ -227,12 +239,15 @@ export {
   resetFormProfile,
   setAllArticles,
   setAllArticlesCount,
-  setAllTags,
+  setAllTopTags,
   clearArticles,
   clearTags,
   clearAll,
   setUser,
   clearUser,
+  setAllUsers,
+  clearAllUsers,
+  updateUser,
   setViewFeed,
   clearViewFeed,
   setTopFeed,
@@ -268,6 +283,12 @@ export {
   userPatchRequested,
   userPatchSucceeded,
   userPatchFailed,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  userRolesPatchRequested,
+  userRolesPatchSucceeded,
+  userRolesPatchFailed,
   publicFeedRequested,
   publicFeedSucceeded,
   publicFeedFailed,

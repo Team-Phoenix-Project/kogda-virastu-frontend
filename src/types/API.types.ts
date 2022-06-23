@@ -9,8 +9,11 @@ import {
   TAPITags,
   TAPIUser,
   TAPITag,
+  TAPITopTags,
   TAPIInviteCode,
-  TAPIImageUrl
+  TAPIImageUrl,
+  TAPIUserData,
+  TAPIUsers,
 } from '../services/api.types';
 
 export interface IRegisterUser {
@@ -70,6 +73,10 @@ export interface IFetchTags {
   () : AxiosPromise<TAPITags>
 }
 
+export interface IFetchTopTags {
+  () : AxiosPromise<TAPITopTags>
+}
+
 export interface IFetchComments {
   (slug: string) : AxiosPromise<TAPIComments>;
 }
@@ -97,6 +104,14 @@ export interface IUploadImage {
   (file: File) : AxiosPromise<TAPIImageUrl>;
 }
 
+export interface IUsers {
+  (): AxiosPromise<TAPIUsers>;
+}
+
+export interface IPatchUserRoles {
+  (username: string, roles: string[]): AxiosPromise<TAPIUserData>;
+}
+
 export type {
   TAPIArticle,
   TAPIArticles,
@@ -106,4 +121,5 @@ export type {
   TAPITags,
   TAPIUser,
   TAPITag,
+  TAPITopTags,
 };
