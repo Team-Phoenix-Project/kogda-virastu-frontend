@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import { jwt } from '../services/api';
 import {
   deleteArticleThunk, getAllTopTagsThunk, getPublicFeedThunk,
-  getUserThunk, getAllTopPostsThunk,
+  getUserThunk, getAllTopPostsThunk, setTopLikedThunk,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
 import { closeConfirm, setLanguage } from '../store';
@@ -47,6 +47,7 @@ const App = () => {
     batch(() => {
       dispatch(getAllTopPostsThunk());
       dispatch(getAllTopTagsThunk());
+      dispatch(setTopLikedThunk());
       dispatch(getPendingPostsThunk());
       dispatch(getSubscribeTagsThunk());
     });
