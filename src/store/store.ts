@@ -5,6 +5,7 @@ import allReducer from './allSlice';
 import viewReducer from './viewSlice';
 import apiReducer from './apiSlice';
 import userReducer from './userSlice';
+import usersReducer from './usersSlice';
 import formsReducer from './formsReducer';
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     api: apiReducer,
     profile: userReducer,
     forms: formsReducer,
+    users: usersReducer,
   },
   middleware: [thunk],
   // eslint-disable-next-line no-undef

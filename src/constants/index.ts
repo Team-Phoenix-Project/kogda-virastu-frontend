@@ -9,6 +9,7 @@ import {
   TAGS_ROUTE,
   PROFILES_ROUTE,
   UPLOAD_IMAGE_ROUTE,
+  ADMIN_ROUTE,
   JWT,
 } from './api.constants';
 
@@ -22,6 +23,10 @@ import {
   footerHeightAtBreakpoint,
 } from './screen-sizes';
 
+import {
+  ADMIN_ROLE,
+} from './roles';
+
 export {
   API_ROOT,
   REGISTER_ROUTE,
@@ -33,6 +38,7 @@ export {
   TAGS_ROUTE,
   PROFILES_ROUTE,
   UPLOAD_IMAGE_ROUTE,
+  ADMIN_ROUTE,
   JWT,
   mobileBreakpoint,
   tabletBreakpoint,
@@ -41,4 +47,5 @@ export {
   mobileViewModal,
   headerHeightAtBreakpoint,
   footerHeightAtBreakpoint,
+  ADMIN_ROLE,
 };

@@ -8,6 +8,7 @@ import {
 
 import {
   EditIcon,
+  CheckIcon,
   AvatarIcon,
   DeleteIcon,
   PlusIcon,
@@ -384,6 +385,23 @@ export const MenuNewPostButton : FC<TButtonProps> = ({ onClick, disabled = false
         distance={iconDistance} />
       <RegularText size='large' weight={500}>
         <FormattedMessage id='newArticle' />
+      </RegularText>
+    </MenuButton>
+  );
+};
+
+export const MenuAdministartionButton: FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <MenuButton
+      colorScheme='menu'
+      disabled={disabled}
+      onClick={onClick}>
+      <CheckIcon
+        color={theme.button.menu.font}
+        distance={iconDistance} />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='administration' />
       </RegularText>
     </MenuButton>
   );

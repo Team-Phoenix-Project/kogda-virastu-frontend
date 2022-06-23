@@ -7,6 +7,16 @@ export type TUser = {
   roles?: Array<string>;
 };
 
+export type TUserData = {
+  _id: string;
+  bio: string;
+  nickname: string;
+  username: string;
+  email: string;
+  image: string;
+  roles: string[];
+};
+
 // Исправлено и переименовано по модели данных сервера
 export type TProfile = {
   following: boolean;

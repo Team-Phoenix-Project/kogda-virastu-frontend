@@ -10,7 +10,9 @@ import {
   TAPIUser,
   TAPITag,
   TAPIInviteCode,
-  TAPIImageUrl
+  TAPIImageUrl,
+  TAPIUserData,
+  TAPIUsers,
 } from '../services/api.types';
 
 export interface IRegisterUser {
@@ -95,6 +97,14 @@ export interface ITag {
 
 export interface IUploadImage {
   (file: File) : AxiosPromise<TAPIImageUrl>;
+}
+
+export interface IUsers {
+  (): AxiosPromise<TAPIUsers>;
+}
+
+export interface IPatchUserRoles {
+  (username: string, roles: string[]): AxiosPromise<TAPIUserData>;
 }
 
 export type {
