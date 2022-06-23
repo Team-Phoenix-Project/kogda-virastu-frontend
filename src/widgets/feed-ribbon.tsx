@@ -63,7 +63,7 @@ const ItemWrapper = styled.li`
   }
 
   @media screen and (max-width: 765px) {
-    max-width: max-content;
+    max-width: 100%;
   }
 `;
 const ButtonsContainer = styled.div`
@@ -74,14 +74,6 @@ const ButtonsContainer = styled.div`
 
 const FirstButtonContainer = styled.div`
 margin-right: 16px;
-
-@media screen and (max-width: 840px) {
-    margin-bottom: 16px;
-  }
-
-  @media screen and (max-width: 765px) {
-    margin-bottom: 0;
-  }
 `;
 
 const SecondButtonContainer = styled.div`
@@ -91,7 +83,7 @@ const SecondButtonContainer = styled.div`
   }
 
 @media screen and (max-width: 765px) {
-  margin: 0;
+  margin-top: 0;
   }
 `;
 

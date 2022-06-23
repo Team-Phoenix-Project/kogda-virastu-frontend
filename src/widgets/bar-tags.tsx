@@ -58,7 +58,7 @@ const Lists = styled.ul<TLists>`
     padding:0;
     @media screen and (max-width:768px) {
         max-width:453px;
-        ${({ isHasImage }) => isHasImage && 'margin-left: -60px'}
+        /* ${({ isHasImage }) => isHasImage && 'margin-left: -60px'} */
      }
      @media screen and (max-width:600px) {
         max-width:352px;

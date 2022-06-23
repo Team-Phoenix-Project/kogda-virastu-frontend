@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from '../services/hooks';
 import {
   addLikeThunk, deleteLikeThunk,
 } from '../thunks';
-import { DeletePostButton, EditPostButton, PublishPostButton } from '../ui-lib';
+import { DeletePostButton, EditPostButton } from '../ui-lib';
 import { openConfirm } from '../store';
 import BarTags, { MessageSubscriptionTag, MessageText } from './bar-tags';
 import Likes from './likes';
