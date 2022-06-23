@@ -29,7 +29,6 @@ const CommentList: FC<CommentListProps> = ({ slug }) => {
   const { commentsFeedAdmin: commentsAdmin } = useSelector((store) => store.view);
   const currentUser = useSelector((state) => state.profile);
 
-  console.log(commentsAdmin);
   const onDeleteClick = (commentId: string) => {
     dispatch(deleteCommentThunk(slug, commentId));
   };

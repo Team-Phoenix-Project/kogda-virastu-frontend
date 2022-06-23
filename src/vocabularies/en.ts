@@ -53,7 +53,14 @@ const en: TAddTVocabulary = {
   invitionCode: 'Enter registration code',
   generateInviteCode: 'Generate code',
   youSubscribedToTheTag: 'You subscribed to the tag #',
-  404: 'error 404',
+  space: '',
+  OK: 'OK',
+  400: 'Validation error - Invalid value passed',
+  421: 'The limits on the number of requests per unit of time have been exceeded - You are accessing the server too often, try again in a few minutes',
+  403: 'Access is denied, you have no rights, there are only duties',
+  404: 'page not found',
+  409: 'Uniqueness validation error - This username /email is already in use',
+  401: 'Authorization error or an incorrect login/password pair was passed',
 };
 
 export default en;

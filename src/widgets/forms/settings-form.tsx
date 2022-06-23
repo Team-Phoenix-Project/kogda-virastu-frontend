@@ -202,7 +202,7 @@ const SettingsForm: FC = () => {
         setTimeout(() => setCopied(false), 2000);
         return setCopied(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log('copyToClipboard', err));
   }
   const link = `${window.location.origin}/registration?=${invitionCode ?? ''}`;
 
