@@ -1,4 +1,4 @@
-import getAllTagsThunk from './get-all-tags-thunk';
+import getAllTopTagsThunk from './get-all-top-tags-thunk';
 import addLikeThunk from './add-like-thunk';
 import createCommentThunk from './create-comment-thunk';
 import deleteLikeThunk from './delete-like-thunk';
@@ -19,9 +19,9 @@ import patchArticleThunk from './patch-article-thunk';
 import postArticleThunk from './post-article-thunk';
 import setTopLikedThunk from './set-top-liked-thunk';
 import setNewPostsThunk from './set-new-posts-thunk';
-import getAllPostsThunk from './get-all-posts-thunk';
 import getAllUsersThunk from './get-all-users-thunk';
 import patchUserRolesThunk from './patch-user-roles-thunk';
+import getAllTopPostsThunk from './get-all-top-posts-thunk';
 
 export {
   createCommentThunk,
@@ -29,7 +29,7 @@ export {
   getCommentsThunk,
   getPrivateFeedThunk,
   getPublicFeedThunk,
-  getAllTagsThunk,
+  getAllTopTagsThunk,
   deleteLikeThunk,
   addLikeThunk,
   getUserProfileThunk,
@@ -45,7 +45,7 @@ export {
   postArticleThunk,
   setTopLikedThunk,
   setNewPostsThunk,
-  getAllPostsThunk,
   getAllUsersThunk,
   patchUserRolesThunk,
+  getAllTopPostsThunk,
 };

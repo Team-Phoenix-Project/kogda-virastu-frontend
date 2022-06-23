@@ -33,6 +33,7 @@ const Comment: FC<TCommentProps> = ({
   onDeleteClick,
   commentId,
   body,
+  isAdmin,
 }) => (
   <CommentContainer>
     <CommentAuthorHeading
@@ -45,7 +46,8 @@ const Comment: FC<TCommentProps> = ({
           onDeleteClick(commentId);
         }
       }}
-      isAuthor={isAuthor} />
+      isAuthor={isAuthor}
+      isAdmin={isAdmin ?? false} />
     <CommentBody>{body}</CommentBody>
   </CommentContainer>
 );

@@ -19,6 +19,8 @@ import {
 import publishArticleAdminThunk from '../thunks/publish-article-admin-thunk';
 import declineArticleAdminThunk from '../thunks/decline-article-admin-thunk';
 import removePublishArticleAdminThunk from '../thunks/remove-article-publish-admin-thunk';
+import { tabletBreakpoint } from '../constants';
+import { defaultH1Mobile } from '../constants/fontsconfigs';
 
 type TArticleProps = {
   slug: string;
@@ -57,6 +59,11 @@ const ArticleTitle = styled.h1`
     line-height: ${({ theme: { firstLevelHeading: { height } } }) => `${height}px`} ;
     font-weight: ${({ theme: { firstLevelHeading: { weight } } }) => weight};
     color: ${({ theme: { primaryText } }) => primaryText};
+
+    @media screen and (max-width: ${tabletBreakpoint}px) {
+    font-size: ${defaultH1Mobile.size}px;
+    line-height: ${defaultH1Mobile.height}px;
+}
 `;
 
 const ArticleActionsContainer = styled.div`
@@ -66,7 +73,7 @@ const ArticleActionsContainer = styled.div`
   && > button {
     /* width:233px; */
     @media screen  and (max-width:725px) {
-      width:175px;
+      /* width:175px; */
     }
   }
 `;
@@ -78,6 +85,10 @@ const ArticleAuthor = styled.p`
   font-weight: ${({ theme: { text16: { weight } } }) => weight};
   margin: 0;
   grid-row: 1;
+
+  @media (max-width: 600px) {
+    grid-area: author;
+  }
 `;
 
 const ArticleCreateDate = styled.p`
@@ -87,11 +98,19 @@ const ArticleCreateDate = styled.p`
   font-weight: ${({ theme: { text16: { weight } } }) => weight};
   margin: 0;
   grid-row: 1;
+
+  @media (max-width: 600px) {
+    grid-area: date;
+  }
 `;
 
 const ArticleLikeWrapper = styled.div`
   grid-row: 1;
   justify-self: end;
+
+  @media (max-width: 600px) {
+    grid-area: like;
+  } 
 `;
 
 const ArticleAuthorContainer = styled.div`
@@ -99,6 +118,13 @@ const ArticleAuthorContainer = styled.div`
   grid-template-columns: auto auto 1fr;
   align-items: center;
   gap: 0 24px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'author like'
+                         'date like';
+    gap: 0;
+  }
 `;
 
 const ArticleImage = styled.img`

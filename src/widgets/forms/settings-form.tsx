@@ -9,6 +9,7 @@ import { TagSetForm } from '../tag';
 import { LabelStyle } from '../../ui-lib/inputs/text-fields-styles';
 import unsubscribeTagThunk from '../../thunks/unsubscribe-tag-thunk';
 import Preloader from '../preloader';
+import getSubscribeTagsThunk from '../../thunks/get-subscribe-tags-thunk';
 
 import {
   setUsernameProfile,
@@ -108,6 +109,7 @@ const SettingsForm: FC = () => {
   const navigate = useNavigate();
   const profile = useSelector((state) => state.profile);
   useEffect(() => {
+    dispatch(getSubscribeTagsThunk());
     dispatch(setFormProfile({
       username: profile.username || '',
       email: profile.email || '',
@@ -209,7 +211,6 @@ const SettingsForm: FC = () => {
     const fileName = (files && files.length && files[0].name) || '';
     setSelectedFileName(`Выбран файл: ${fileName}`);
   };
-
   if (tagsFollow) {
     return (
       <FormContainer>
@@ -274,8 +275,8 @@ const SettingsForm: FC = () => {
     );
   }
   return (
-    // <Preloader />
-    <div>.......Loading Tags SettingsForm...</div>
+    <Preloader />
+    // <div>.......Loading Tags SettingsForm...</div>
   );
 };
 

@@ -1,6 +1,6 @@
 import { string } from 'prop-types';
 import {
-  TArticle, TComment, TProfile, TTags, TUser, TTag, TUserData
+  TArticle, TComment, TProfile, TTags, TUser, TTag, TUserData, TTopTags,
 } from '../types/types';
 
 export type TAPINewUser = {
@@ -80,6 +80,10 @@ export type TAPIPatchArticleData = {
 
 export type TAPITags = {
   tags: TTags;
+};
+
+export type TAPITopTags = {
+  tags: TTopTags;
 };
 
 export type TAPIComment = {

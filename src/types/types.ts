@@ -76,3 +76,10 @@ export enum UserArticlesTypes {
 }
 
 export type TTag = string;
+
+export type TTopTag = {
+  count: number;
+  name: string;
+};
+
+export type TTopTags = Array<TTopTag>;

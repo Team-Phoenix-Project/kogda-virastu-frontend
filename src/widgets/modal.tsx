@@ -76,14 +76,14 @@ const Modal : FC<TModalProps> = ({ onClose, onSubmit }) => {
     };
   }, [onClose, portalRoot]);
   const onCloseClick : MouseEventHandler = () => onClose();
-
+  const error = '404';
   return ReactDOM.createPortal(
     (
       <ModalOverlay onClick={onCloseClick}>
         <ModalDialog>
           <CloseButton onClick={onCloseClick}><CrossIcon color={theme.primaryText} /></CloseButton>
           <HeaderTwoText color={theme.modalCaption} marginCSS='margin-top: 56px;'>
-            <FormattedMessage id='deleteArticle' />
+            <FormattedMessage id={error} />
           </HeaderTwoText>
           <RegularText
             size='large'

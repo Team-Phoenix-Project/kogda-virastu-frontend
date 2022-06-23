@@ -18,6 +18,7 @@ export type TCommentAuthorHeadingProps = {
   nickname: string;
   date: Date;
   isAuthor: boolean;
+  isAdmin: boolean;
   onDeleteClick?: React.MouseEventHandler<SVGSVGElement>;
 };
 
@@ -69,4 +70,5 @@ export type TCommentProps = {
   isAuthor: boolean,
   body: string,
   commentId: string,
+  isAdmin?: boolean | null,
 };

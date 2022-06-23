@@ -134,7 +134,6 @@ const viewSlice = createSlice({
     }),
   },
 });
-
 export const {
   clearPage,
   setViewFeed,

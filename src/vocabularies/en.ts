@@ -1,6 +1,6 @@
-import { TVocabulary } from '../types/vocabularies.types';
+import { TAddTVocabulary } from '../types/vocabularies.types';
 
-const en: TVocabulary = {
+const en: TAddTVocabulary = {
   headerLink: 'Main Page',
   userLogin: 'Login',
   newArticle: 'New post',
@@ -58,6 +58,7 @@ const en: TVocabulary = {
   invitionCode: 'Enter registration code',
   generateInviteCode: 'Generate code',
   youSubscribedToTheTag: 'You subscribed to the tag #',
+  404: 'error 404',
 };
 
 export default en;

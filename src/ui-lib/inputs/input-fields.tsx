@@ -50,7 +50,7 @@ export const FieldUrl: FC<TFieldInput & TFileInput & {
       value={value}
       onChange={onChange}
       labelText={intl.messages.articleImage as string}
-      icon={<FileInput fileInputRef={fileInputRef} onSelectFile={onSelectFile}/>}
+      icon={<FileInput fileInputRef={fileInputRef} onSelectFile={onSelectFile} />}
       disabled={disabled} />
   );
 };
@@ -81,7 +81,7 @@ export const FieldProfileImage: FC<TFieldInput & TFileInput & {
       value={value}
       onChange={onChange}
       labelText={intl.messages.urlImage as string}
-      icon={<FileInput fileInputRef={fileInputRef} onSelectFile={onSelectFile}/>}
+      icon={<FileInput fileInputRef={fileInputRef} onSelectFile={onSelectFile} />}
       disabled={disabled} />
   );
 };

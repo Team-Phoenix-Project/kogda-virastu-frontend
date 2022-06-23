@@ -55,10 +55,10 @@ const ru: TVocabulary = {
   decline: 'Отклонить',
   published: 'Опубликована',
   removePublish: 'Снять с публикации',
-  invationCode: 'Введите код регистрации',
   invitionCode: 'Введите код регистрации',
   generateInviteCode: 'Сгенерировать код',
   youSubscribedToTheTag: 'Вы подписались на тег #',
+  404: 'ошибка 404',
 };
 
 export default ru;
