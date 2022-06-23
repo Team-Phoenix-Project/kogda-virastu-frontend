@@ -176,15 +176,15 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const onClickReject = (slug: string) => {
+  const onClickReject = async (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    dispatch(declineArticleAdminThunk(slug));
+   await dispatch(declineArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
-  const onClickPublish = (slug: string) => {
+  const onClickPublish = async (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    dispatch(publishArticleAdminThunk(slug));
+   await dispatch(publishArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
