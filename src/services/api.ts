@@ -443,7 +443,7 @@ export const publishCommentsAdmin : IFetchAdminComments = (
 
 export const fetchCommentsAdmin : IFetchComments = (slug: string) : AxiosPromise<TAPIComments> => {
   const requestConfig : AxiosRequestConfig = {
-    url: `admin${ARTICLES_ROUTE}/${slug}/comments/state/published`,
+    url: `admin${ARTICLES_ROUTE}/${slug}/comments/state/pending`,
     method: 'get',
   };
   return blogAPI(injectBearerToken(requestConfig));

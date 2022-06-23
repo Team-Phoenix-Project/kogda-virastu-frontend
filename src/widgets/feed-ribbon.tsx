@@ -37,13 +37,13 @@ const RibbonWrapper = styled.ul`
 
   @media screen and (max-width: 769px) {
     column-gap: 20px;
-    row-gap: 32px;
     max-width: 474px;
     padding: 0;
   }
 
   @media screen and (max-width: 765px) {
     flex-flow: column nowrap;
+    row-gap: 64px;
   }
 `;
 
@@ -77,6 +77,10 @@ margin-right: 16px;
 
 @media screen and (max-width: 840px) {
     margin-bottom: 16px;
+  }
+
+  @media screen and (max-width: 765px) {
+    margin-bottom: 0;
   }
 `;
 

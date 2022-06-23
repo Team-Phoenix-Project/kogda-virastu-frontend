@@ -14,7 +14,7 @@ const Ribbon = styled.section`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
