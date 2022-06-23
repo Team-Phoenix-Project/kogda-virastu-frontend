@@ -14,6 +14,7 @@ type TAllState = {
   vocabularies: TVocabularies,
   langNames: Array<string>,
 };
+
 const initialState : TAllState = {
   articles: null,
   articlesCount: 0,

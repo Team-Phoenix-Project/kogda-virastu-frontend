@@ -9,6 +9,8 @@ type TAPIState = {
   isUserFetching: boolean,
   isUserLoggingIn: boolean,
   isUserPatching: boolean,
+  isUsersFetching: boolean,
+  isUserRolesPatching: boolean,
   isPublicFeedFetching: boolean,
   isArticleFetching: boolean,
   isArticleNotFound: boolean,
@@ -53,6 +55,8 @@ const initialState : TAPIState = {
   isUserLoggingIn: false,
   isUserFetching: false,
   isUserPatching: false,
+  isUsersFetching: false,
+  isUserRolesPatching: false,
   isPublicFeedFetching: false,
   isArticleFetching: false,
   isArticleNotFound: false,
@@ -164,6 +168,24 @@ const apiSlice = createSlice({
     }),
     userPatchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserPatching: false, errorObject: action.payload,
+    }),
+    usersFetchRequested: (state) => ({
+      ...state, isUsersFetching: true,
+    }),
+    usersFetchSucceeded: (state) => ({
+      ...state, isUsersFetching: false,
+    }),
+    usersFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUsersFetching: false, errorObject: action.payload,
+    }),
+    userRolesPatchRequested: (state) => ({
+      ...state, isUserRolesPatching: true,
+    }),
+    userRolesPatchSucceeded: (state) => ({
+      ...state, isUserRolesPatching: false,
+    }),
+    userRolesPatchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUserRolesPatching: false, errorObject: action.payload,
     }),
     publicFeedRequested: (state) => ({
       ...state, isPublicFeedFetching: true,
@@ -446,6 +468,12 @@ export const {
   userPatchRequested,
   userPatchSucceeded,
   userPatchFailed,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  userRolesPatchRequested,
+  userRolesPatchSucceeded,
+  userRolesPatchFailed,
   publicFeedRequested,
   publicFeedSucceeded,
   publicFeedFailed,
