@@ -28,6 +28,9 @@ export type TTheme = {
     borderActive: string;
     disabledInput: string;
     errorColor: string;
+    checkBox: string,
+    checkBoxHover: string,
+    checkBoxActive: string,
   },
   button: {
     [key: string]: TColorSet,
@@ -75,7 +78,7 @@ export type TButtonProps = {
   disabled?: boolean;
 };
 
-export type TAvatarSizes = 'large' | 'small';
+export type TAvatarSizes = 'large' | 'medium' | 'small';
 
 export type TAvatarIconProps = {
   size: TAvatarSizes;

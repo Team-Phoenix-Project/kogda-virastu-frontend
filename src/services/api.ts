@@ -13,6 +13,7 @@ import {
   TAGS_ROUTE,
   TOP_TAGS_ROUTE,
   UPLOAD_IMAGE_ROUTE,
+  ADMIN_ROUTE,
 } from '../constants';
 import {
   TAPINewUser,
@@ -32,6 +33,8 @@ import {
   TAPITag,
   TAPIInviteCode,
   TAPIImageUrl,
+  TAPIUsers,
+  TAPIUserData,
 } from './api.types';
 import {
   IDeleteArticle,
@@ -54,6 +57,8 @@ import {
   IRegisterUser,
   ITag,
   IUploadImage,
+  IUsers,
+  IPatchUserRoles,
 } from '../types/API.types';
 
 const defaultRequestConfig : AxiosRequestConfig = {
@@ -516,6 +521,26 @@ export const deleteUnsubscribeTag : ITag = (tag: string) : AxiosPromise<null> =>
   const requestConfig : AxiosRequestConfig = {
     url: `${TAGS_ROUTE}/${tag}/follow`,
     method: 'delete',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const getUsers : IUsers = () : AxiosPromise<TAPIUsers> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `${ADMIN_ROUTE}/users`,
+    method: 'get',
+  };
+  return blogAPI(injectBearerToken(requestConfig));
+};
+
+export const pathUserRoles: IPatchUserRoles = (
+  username: string,
+  roles: string[],
+) : AxiosPromise<TAPIUserData> => {
+  const requestConfig: AxiosRequestConfig = {
+    url: `${ADMIN_ROUTE}/users/${username}/roles/`,
+    method: 'patch',
+    data: { roles },
   };
   return blogAPI(injectBearerToken(requestConfig));
 };

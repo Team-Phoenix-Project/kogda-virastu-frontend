@@ -16,5 +16,6 @@ export const TAGS_ROUTE = '/tags';
 export const TOP_TAGS_ROUTE = '/tags/top';
 export const PROFILES_ROUTE = '/profiles';
 export const UPLOAD_IMAGE_ROUTE = '/upload/';
+export const ADMIN_ROUTE = '/admin';
 
 export const JWT = 'JWT-RT-BLG';

@@ -21,6 +21,7 @@ import Register from '../pages/register';
 import Settings from '../pages/settings';
 import ArticlePage from '../pages/article-page';
 import Editor from '../pages/editor';
+import Administration from '../pages/administration';
 import { FeedRibbon, Modal } from '../widgets';
 import { IGenericVoidHandler } from '../types/widgets.types';
 import getSubscribeTagsThunk from '../thunks/get-subscribe-tags-thunk';
@@ -72,15 +73,16 @@ const App = () => {
         <Header />
         <Routes>
           <Route path='/' element={<Main />} />
-          <Route path='/article' element={<MainSubscribe />} />
-          <Route path='/moderation' element={<MainModeration />} />
           <Route path='/login' element={<Login />} />
           <Route path='/registration' element={<Register />} />
+          <Route path='/article' element={<MainSubscribe />} />
+          <Route path='/article/:slug' element={<ArticlePage />} />
           <Route path='/editArticle' element={<Editor />} />
           <Route path='/editArticle/:slug' element={<Editor />} />
           <Route path='/profile/:username' element={<Profile />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/article/:slug' element={<ArticlePage />} />
+          <Route path='/admin' element={<Administration />} />
+          <Route path='/moderation' element={<MainModeration />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />

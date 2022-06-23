@@ -1,6 +1,6 @@
 import { string } from 'prop-types';
 import {
-  TArticle, TComment, TProfile, TTags, TUser, TTag, TTopTags,
+  TArticle, TComment, TProfile, TTags, TUser, TTag, TUserData, TTopTags,
 } from '../types/types';
 
 export type TAPINewUser = {
@@ -111,3 +111,12 @@ export type TAPITag = {
 export type TAPIImageUrl = {
   url: string;
 };
+
+export type TAPIUsers = {
+  users: TUserData [],
+  usersCount: number,
+}
+
+export type TAPIUserData = {
+  user: TUserData,
+}

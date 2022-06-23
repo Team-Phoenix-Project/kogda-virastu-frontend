@@ -22,6 +22,7 @@ import { ReactComponent as EyeNoPic } from '../assets/images/icons/eyeNo-icon.sv
 import { ReactComponent as ArrowLeftPic } from '../assets/images/icons/arrow-left-icon.svg';
 import { ReactComponent as ArrowRightPic } from '../assets/images/icons/arrow-right-icon.svg';
 import { ReactComponent as PreloaderPic } from '../assets/images/icons/preloader.svg';
+import { ReactComponent as CheckBoxPic } from '../assets/images/icons/ckeckbox-icon.svg';
 
 import { getAvatarBorderProp, testImageUrl } from '../services/helpers';
 import { blue, greySecondary } from '../constants/colors';
@@ -37,6 +38,10 @@ const avatarSize : TAvatarSize = {
   large: {
     width: 230,
     height: 230,
+  },
+  medium: {
+    width: 30,
+    height: 30,
   },
   small: {
     width: 24,
@@ -289,6 +294,14 @@ export const EyeNoIcon = styled(EyeNoPic)<TIconProps>`
   height: 24px;
   display: block;
   margin-right: ${({ distance }) => distance ?? 0}px;
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+
+export const CheckBoxIcon = styled(CheckBoxPic)<TIconProps>`
+  width: 12px;
+  height: 9px;
   & > path {
     stroke: ${({ color }) => color};
     }
