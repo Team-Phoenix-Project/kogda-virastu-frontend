@@ -19,6 +19,7 @@ const RibbonWrapper = styled.ul`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  min-width: 52vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -39,6 +40,7 @@ const RibbonWrapper = styled.ul`
     column-gap: 20px;
     max-width: 474px;
     padding: 0;
+    min-width: 61vw;
   }
 
   @media screen and (max-width: 765px) {
