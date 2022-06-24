@@ -10,7 +10,7 @@ import {
   getUserThunk, getAllTopPostsThunk,
 } from '../thunks';
 import basicThemes, { defaultTheme } from '../themes/index';
-import { closeConfirm, setLanguage } from '../store';
+import { closeConfirm, setLanguage, clearErrorObject } from '../store';
 import Header from '../widgets/Header';
 import Footer from '../widgets/Footer';
 import Profile from '../pages/profile';
@@ -34,11 +34,18 @@ const App = () => {
   const { currentTheme, currentLang } = useSelector((state) => state.system);
   const { themes, langNames, vocabularies } = useSelector((state) => state.all);
   const { isDeleteConfirmOpen } = useSelector((state) => state.system);
+  const { errorObject } = useSelector((state) => state.api);
   const { username, nickname } = useSelector((state) => state.profile);
   const slug = useSelector((state) => state.view.article?.slug) ?? '';
   const onConfirmDelete : IGenericVoidHandler = () => {
     batch(() => {
       dispatch(deleteArticleThunk(slug));
+      dispatch(closeConfirm());
+    });
+  };
+  const onCloseModal : IGenericVoidHandler = () => {
+    batch(() => {
+      dispatch(clearErrorObject());
       dispatch(closeConfirm());
     });
   };
@@ -64,6 +71,8 @@ const App = () => {
       dispatch(setLanguage(language));
     }
   }, [dispatch, langNames]);
+  let statusCode = 0;
+  if (errorObject?.statusCode) { statusCode = errorObject?.statusCode; }
   return (
     <IntlProvider locale={currentLang} messages={vocabularies[currentLang]}>
       <ThemeProvider theme={
@@ -87,6 +96,8 @@ const App = () => {
         </Routes>
         <Footer />
         {isDeleteConfirmOpen && <Modal onClose={onConfirmClose} onSubmit={onConfirmDelete} />}
+        {statusCode > 399 && !isDeleteConfirmOpen
+          && <Modal onClose={onCloseModal} onSubmit={onCloseModal} error={errorObject} />}
       </ThemeProvider>
     </IntlProvider>
   );

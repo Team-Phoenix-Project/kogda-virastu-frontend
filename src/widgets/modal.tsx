@@ -6,7 +6,7 @@ import styled, { useTheme } from 'styled-components';
 import ReactDOM from 'react-dom';
 import { FormattedMessage } from 'react-intl';
 import {
-  ConfirmDeleteButton, CrossIcon, HeaderTwoText, RegularText,
+  ConfirmDeleteButton, CrossIcon, HeaderTwoText, RegularText, ConfirmDeleteButtonModal,
 } from '../ui-lib';
 
 import { mobileBreakpoint, mobileViewModal } from '../constants';
@@ -61,7 +61,7 @@ const ModalDialog = styled.div`
   }
 `;
 
-const Modal : FC<TModalProps> = ({ onClose, onSubmit }) => {
+const Modal : FC<TModalProps> = ({ onClose, onSubmit, error }) => {
   const theme = useTheme();
   const portalRoot = useMemo(() => document.getElementById('modal'), []) as Element;
   useEffect(() => {
@@ -76,15 +76,20 @@ const Modal : FC<TModalProps> = ({ onClose, onSubmit }) => {
     };
   }, [onClose, portalRoot]);
   const onCloseClick : MouseEventHandler = () => onClose();
-  const error = '404';
+  const errorStatusCode = String(error?.statusCode);
+  const errorStatusCodeModal = error?.statusCode ? error?.statusCode < 400 : true;
   return ReactDOM.createPortal(
     (
       <ModalOverlay onClick={onCloseClick}>
         <ModalDialog>
           <CloseButton onClick={onCloseClick}><CrossIcon color={theme.primaryText} /></CloseButton>
-          <HeaderTwoText color={theme.modalCaption} marginCSS='margin-top: 56px;'>
-            <FormattedMessage id={error} />
-          </HeaderTwoText>
+          {errorStatusCodeModal
+            ? (
+              <HeaderTwoText color={theme.modalCaption} marginCSS='margin-top: 56px;'>
+                <FormattedMessage id='deleteArticle' />
+              </HeaderTwoText>
+            )
+            : <HeaderTwoText color={theme.modalCaption} marginCSS='margin-top: 76px;' />}
           <RegularText
             size='large'
             weight={400}
@@ -92,9 +97,13 @@ const Modal : FC<TModalProps> = ({ onClose, onSubmit }) => {
             color={theme.modalText}
             marginCSS='margin: 36px 0;'
             paddingCSS='max-width: 400px;'>
-            <FormattedMessage id='deletepopuptext' />
+            {errorStatusCode
+              ? <FormattedMessage id={errorStatusCode} />
+              : <FormattedMessage id='deletepopuptext' />}
           </RegularText>
-          <ConfirmDeleteButton onClick={onSubmit} />
+          {errorStatusCode
+            ? <ConfirmDeleteButtonModal onClick={onSubmit} />
+            : <ConfirmDeleteButton onClick={onClose} />}
         </ModalDialog>
       </ModalOverlay>
     ), portalRoot,

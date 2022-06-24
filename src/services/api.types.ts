@@ -104,9 +104,10 @@ export type TAPIError = {
   errors: TAPIErrors;
   statusCode: number;
 };
+
 export type TAPITag = {
   tag: TTag;
-};
+}; 
 
 export type TAPIImageUrl = {
   url: string;

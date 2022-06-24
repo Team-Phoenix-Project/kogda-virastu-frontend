@@ -278,6 +278,13 @@ export const ConfirmDeleteButton : FC<TButtonProps> = ({ onClick, disabled = fal
     </RegularText>
   </BasicNormalButton>
 );
+export const ConfirmDeleteButtonModal : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='OK' />
+    </RegularText>
+  </BasicNormalButton>
+);
 
 export const FollowButton: FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();

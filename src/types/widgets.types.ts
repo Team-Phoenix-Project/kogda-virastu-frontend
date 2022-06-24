@@ -1,4 +1,5 @@
 import React from 'react';
+import { TAPIError } from '../services/api.types';
 
 export type TAuthorHeadingProps = {
   image?: string;
@@ -55,6 +56,7 @@ export interface IGenericVoidHandler {
 export type TModalProps = {
   onClose: IGenericVoidHandler;
   onSubmit: IGenericVoidHandler;
+  error?: TAPIError | null;
 };
 
 export type TScrollRibbonProps = {
