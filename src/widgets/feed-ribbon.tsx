@@ -19,6 +19,7 @@ const RibbonWrapper = styled.ul`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  min-width: 52vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -39,6 +40,7 @@ const RibbonWrapper = styled.ul`
     column-gap: 20px;
     max-width: 474px;
     padding: 0;
+    min-width: 61vw;
   }
 
   @media screen and (max-width: 765px) {
@@ -63,7 +65,7 @@ const ItemWrapper = styled.li`
   }
 
   @media screen and (max-width: 765px) {
-    max-width: max-content;
+    max-width: 100%;
   }
 `;
 const ButtonsContainer = styled.div`
@@ -74,14 +76,6 @@ const ButtonsContainer = styled.div`
 
 const FirstButtonContainer = styled.div`
 margin-right: 16px;
-
-@media screen and (max-width: 840px) {
-    margin-bottom: 16px;
-  }
-
-  @media screen and (max-width: 765px) {
-    margin-bottom: 0;
-  }
 `;
 
 const SecondButtonContainer = styled.div`
@@ -91,7 +85,7 @@ const SecondButtonContainer = styled.div`
   }
 
 @media screen and (max-width: 765px) {
-  margin: 0;
+  margin-top: 0;
   }
 `;
 
@@ -184,15 +178,15 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
     return notActiveStyle;
   };
 
-  const onClickReject = (slug: string) => {
+  const onClickReject = async (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    dispatch(declineArticleAdminThunk(slug));
+   await dispatch(declineArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
-  const onClickPublish = (slug: string) => {
+  const onClickPublish = async (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-    dispatch(publishArticleAdminThunk(slug));
+   await dispatch(publishArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
