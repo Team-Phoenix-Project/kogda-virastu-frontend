@@ -180,13 +180,13 @@ const FeedRibbon: FC<TFeedRibbon> = ({ type }) => {
 
   const onClickReject = async (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-   await dispatch(declineArticleAdminThunk(slug));
+    await dispatch(declineArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
   const onClickPublish = async (slug: string) => {
     // eslint-disable-next-line @typescript-eslint/await-thenable
-   await dispatch(publishArticleAdminThunk(slug));
+    await dispatch(publishArticleAdminThunk(slug));
     dispatch(getPendingPostsThunk());
   };
 
