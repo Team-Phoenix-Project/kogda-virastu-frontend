@@ -26,7 +26,9 @@ type CommentListProps = {
 const CommentList: FC<CommentListProps> = ({ slug }) => {
   const dispatch = useDispatch();
   const { commentsFeed: comments } = useSelector((store) => store.view);
+  // const { commentsFeedAdmin: commentsAdmin } = useSelector((store) => store.view);
   const currentUser = useSelector((state) => state.profile);
+  const isAdmin = currentUser.roles && currentUser.roles[1] === 'admin';
 
   const onDeleteClick = (commentId: string) => {
     dispatch(deleteCommentThunk(slug, commentId));
@@ -47,7 +49,8 @@ const CommentList: FC<CommentListProps> = ({ slug }) => {
             body={comment.body}
             isAuthor={comment.author.username === currentUser.username}
             onDeleteClick={onDeleteClick}
-            commentId={comment.id} />
+            commentId={comment.id}
+            isAdmin={isAdmin} />
         </Item>
       ))}
     </List>

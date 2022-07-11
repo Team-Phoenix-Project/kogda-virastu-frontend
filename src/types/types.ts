@@ -4,6 +4,17 @@ export type TUser = {
   bio?: string;
   image?:string;
   nickname?: string;
+  roles?: Array<string>;
+};
+
+export type TUserData = {
+  _id: string;
+  bio: string;
+  nickname: string;
+  username: string;
+  email: string;
+  image: string;
+  roles: string[];
 };
 
 // Исправлено и переименовано по модели данных сервера
@@ -14,6 +25,7 @@ export type TProfile = {
   email: string;
   bio?: string;
   nickname?: string;
+  roles?: Array<string>;
 };
 
 export type TTags = Array<string>;
@@ -27,6 +39,7 @@ export type TArticle = {
   favorited: boolean;
   favoritesCount: number;
   slug: string;
+  state?: string;
   tagList: TTags;
   title: string;
   updatedAt: string;
@@ -61,3 +74,12 @@ export enum UserArticlesTypes {
   favorite = 'favorite',
 
 }
+
+export type TTag = string;
+
+export type TTopTag = {
+  count: number;
+  name: string;
+};
+
+export type TTopTags = Array<TTopTag>;

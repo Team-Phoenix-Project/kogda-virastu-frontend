@@ -13,7 +13,6 @@ const HeadingContainer = styled.div`
   gap: 0 8px;
   height: 40px;
 `;
-
 const AuthorHeadingWidget : React.FC<TAuthorHeadingProps> = ({
   username,
   nickname,

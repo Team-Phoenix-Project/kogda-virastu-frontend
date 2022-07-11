@@ -18,6 +18,7 @@ import {
 } from '../store';
 import Slider from '../widgets/slider';
 import { desktopBreakpoint, mobileViewThreshold, tabletBreakpoint } from '../constants';
+import getCommentsAdmin from '../thunks/get-comments-admin-thunk';
 
 const desktopToTabletGapStep = (80 - 40) / (desktopBreakpoint - tabletBreakpoint);
 const tabletToMobileGapStep = (40 - 20) / (tabletBreakpoint - mobileViewThreshold);
@@ -95,7 +96,7 @@ const RightColumn = styled.aside`
     }
   }
 `;
-
+/** страница '/article/:slug' */
 const ArticlePage: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -105,14 +106,23 @@ const ArticlePage: FC = () => {
   const { slug } = useParams();
   const { isArticleNotFound, isArticleRemoved } = useSelector((state) => state.api);
   const { articles } = useSelector((state) => state.all);
+  const currentUser = useSelector((state) => state.profile);
+  const isAdmin = currentUser.roles && currentUser.roles[1] === 'admin';
 
   useEffect(() => {
     batch(() => {
       dispatch(resetArticle());
       dispatch(getCommentsThunk(slug));
+      dispatch(getCommentsAdmin(slug));
       dispatch(getArticleThunk(slug));
     });
   }, [dispatch, slug]);
+
+  useEffect(() => {
+    if (isAdmin) {
+      dispatch(getCommentsAdmin(slug));
+    }
+  }, [dispatch, slug, isAdmin]);
 
   useEffect(() => {
     if (articles && articles?.length > 0) {

@@ -18,6 +18,9 @@ import {
   PaperClipIcon,
   EyeIcon,
   EyeNoIcon,
+  ArrowLeft,
+  ArrowRight,
+  PreloaderBox,
 } from './icons';
 
 import {
@@ -33,8 +36,10 @@ import {
   PublishPostButton,
   SavePostButton,
   ConfirmDeleteButton,
+  ConfirmDeleteButtonModal,
   MenuNewPostButton,
   MenuSettingsButton,
+  MenuAdministartionButton,
   MenuLogoutButton,
 } from './buttons';
 
@@ -43,19 +48,24 @@ import {
   FieldLogin,
   FieldEmail,
   FieldPassword,
+  ConfirmPassword,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTags,
   FieldNick,
+  InvitionCode,
   FieldProfileImage,
-}
-  from './inputs/input-fields';
+} from './inputs/input-fields';
+
 import {
   FieldTextComment,
   FieldAboutArticle,
   FieldAboutUser,
   FieldTextArticle,
 } from './inputs/textarea-fields';
+
+import CheckBox from './inputs/checkbox-fields'
+
 import {
   HeaderOneText,
   HeaderTwoText,
@@ -102,12 +112,15 @@ export {
   PublishPostButton,
   SavePostButton,
   ConfirmDeleteButton,
+  ConfirmDeleteButtonModal,
   Divider,
   FieldUrl,
   FieldLogin,
   FieldEmail,
   FieldPassword,
+  ConfirmPassword,
   FieldNick,
+  InvitionCode,
   FieldNameArticle,
   FieldDescriptionArticle,
   FieldTags,
@@ -115,6 +128,7 @@ export {
   FieldTextArticle,
   FieldAboutUser,
   FieldAboutArticle,
+  CheckBox,
   HeaderOneText,
   HeaderTwoText,
   HeaderThreeText,
@@ -123,6 +137,10 @@ export {
   RegularText,
   MenuNewPostButton,
   MenuSettingsButton,
+  MenuAdministartionButton,
   MenuLogoutButton,
   FieldTextComment,
+  ArrowLeft,
+  ArrowRight,
+  PreloaderBox,
 };

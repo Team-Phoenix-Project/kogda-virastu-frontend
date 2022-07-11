@@ -12,6 +12,9 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width:570px) {
+    padding: 0 20px;
+  }
 `;
 
 export const FormTitle = styled.h2`
@@ -58,6 +61,15 @@ export const InputFieldset = styled.fieldset<TInputFieldsetProps>`
 
 export const ButtonContainer = styled.div`
   align-self: flex-end;
+`;
+
+export const ButtonContainerFlexStart = styled.div`
+  display: flex;
+  gap: 5px;
+  align-self: flex-start;
+    @media screen and (max-width:500px) {
+      flex-direction: column;
+    }
 `;
 
 export const ButtonsWrapper = styled.div`

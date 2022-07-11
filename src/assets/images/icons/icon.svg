@@ -1,0 +1,19 @@
+<svg width="170" height="141" viewBox="150 100 174 124" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+<g id="icon">
+<g id="Name=arrow left, Type=default">
+<path id="Vector_29" d="M168.25 113H151.75" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_30" d="M158.5 106.25L151.75 113L158.5 119.75" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<!-- <g id="Name=arrow right, Type=default">
+<path id="Vector_31" d="M195.75 114H212.25" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_32" d="M205.5 107.25L212.25 114L205.5 120.75" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g> -->
+<!-- <rect x="0.5" y="0.5" width="369" height="140" rx="4.5" stroke="#7B61FF" stroke-dasharray="10 5"/> -->
+</g>
+<defs>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<!-- <use xlink:href="#image0_2472_6366" transform="translate(-0.415362 -0.0881254) scale(0.00094951)"/> -->
+</pattern>
+</defs>
+</svg>

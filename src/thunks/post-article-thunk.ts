@@ -5,12 +5,13 @@ import {
   articlePostSucceeded,
   articlePostFailed,
 } from '../store';
-import { postArticle } from '../services/api';
+import { postArticle, uploadImage } from '../services/api';
 import { makeErrorObject } from '../services/helpers';
 import makeTagList from '../services/helpers/make-tagList';
 import { TAPIError } from '../services/api.types';
+import { API_ROOT } from '../constants/api.constants';
 
-const postArticleThunk: AppThunk = () => async (dispatch, getState) => {
+const postArticleThunk: AppThunk = (file: File) => async (dispatch, getState) => {
   dispatch(articlePostRequested());
   const articleData = getState().forms.article ?? {};
   const {
@@ -18,14 +19,26 @@ const postArticleThunk: AppThunk = () => async (dispatch, getState) => {
   } = articleData;
   const tagList = makeTagList(articleData.tags || '');
   try {
-    await postArticle({
-      title,
-      description,
-      body,
-      tagList,
-      link,
-    });
-    dispatch(articlePostSucceeded());
+    if (file) {
+      const { data: { url } } = await uploadImage(file);
+      await postArticle({
+        title,
+        description,
+        body,
+        tagList,
+        link: `${API_ROOT}${url}`,
+      });
+      dispatch(articlePostSucceeded());
+    } else {
+      await postArticle({
+        title,
+        description,
+        body,
+        tagList,
+        link,
+      });
+      dispatch(articlePostSucceeded());
+    }
   } catch (error) {
     dispatch(
       articlePostFailed(makeErrorObject(error as AxiosError<TAPIError>)),

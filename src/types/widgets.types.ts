@@ -1,4 +1,5 @@
 import React from 'react';
+import { TAPIError } from '../services/api.types';
 
 export type TAuthorHeadingProps = {
   image?: string;
@@ -18,6 +19,7 @@ export type TCommentAuthorHeadingProps = {
   nickname: string;
   date: Date;
   isAuthor: boolean;
+  isAdmin: boolean;
   onDeleteClick?: React.MouseEventHandler<SVGSVGElement>;
 };
 
@@ -54,6 +56,7 @@ export interface IGenericVoidHandler {
 export type TModalProps = {
   onClose: IGenericVoidHandler;
   onSubmit: IGenericVoidHandler;
+  error?: TAPIError | null;
 };
 
 export type TScrollRibbonProps = {
@@ -69,4 +72,5 @@ export type TCommentProps = {
   isAuthor: boolean,
   body: string,
   commentId: string,
+  isAdmin?: boolean | null,
 };

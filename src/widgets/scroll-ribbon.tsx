@@ -9,11 +9,12 @@ import { TScrollRibbonProps } from '../types/widgets.types';
 const Ribbon = styled.section`
   // overflow: scroll;
   display: flex;
+  max-width: 750px;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;

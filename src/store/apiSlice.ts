@@ -9,6 +9,8 @@ type TAPIState = {
   isUserFetching: boolean,
   isUserLoggingIn: boolean,
   isUserPatching: boolean,
+  isUsersFetching: boolean,
+  isUserRolesPatching: boolean,
   isPublicFeedFetching: boolean,
   isArticleFetching: boolean,
   isArticleNotFound: boolean,
@@ -19,10 +21,17 @@ type TAPIState = {
   isArticleRemoved: boolean,
   isArticlePatching: boolean,
   isArticlePatchingSucceeded: boolean,
+  isArticlePublishing: boolean,
+  isArticlePublishingSucceeded: boolean,
+  isArticleDeclining: boolean,
+  isArticleDecliningSucceeded: boolean,
+  isArticleRemovePublishing: boolean,
+  isArticleRemovePublishingSucceeded: boolean,
   isLikeArticlePosting: boolean,
   isLikeArticleDeleting: boolean,
   isTagsFetching: boolean,
   isCommentsFetching: boolean,
+  isCommentsAdminFetching: boolean,
   isCommentPosting: boolean,
   isCommentDeleting: boolean,
   isProfileFetching: boolean,
@@ -32,6 +41,10 @@ type TAPIState = {
   isSettingsPatching: boolean,
   isSettingsUpdateSucceeded: boolean,
   isAllPostsRequested: boolean,
+  isPendingPostsRequested: boolean,
+  isTagSubscribed: boolean,
+  isUnsubscribeTagDeleting: boolean,
+  isSubscribeTagsFetching: boolean,
 };
 
 const initialState : TAPIState = {
@@ -42,6 +55,8 @@ const initialState : TAPIState = {
   isUserLoggingIn: false,
   isUserFetching: false,
   isUserPatching: false,
+  isUsersFetching: false,
+  isUserRolesPatching: false,
   isPublicFeedFetching: false,
   isArticleFetching: false,
   isArticleNotFound: false,
@@ -52,10 +67,17 @@ const initialState : TAPIState = {
   isArticleRemoved: false,
   isArticlePatching: false,
   isArticlePatchingSucceeded: false,
+  isArticlePublishing: false,
+  isArticlePublishingSucceeded: false,
+  isArticleDeclining: false,
+  isArticleDecliningSucceeded: false,
+  isArticleRemovePublishing: false,
+  isArticleRemovePublishingSucceeded: false,
   isLikeArticlePosting: false,
   isLikeArticleDeleting: false,
   isTagsFetching: false,
   isCommentsFetching: false,
+  isCommentsAdminFetching: false,
   isCommentPosting: false,
   isCommentDeleting: false,
   isProfileFetching: false,
@@ -65,6 +87,10 @@ const initialState : TAPIState = {
   isSettingsPatching: false,
   isSettingsUpdateSucceeded: false,
   isAllPostsRequested: false,
+  isPendingPostsRequested: false,
+  isTagSubscribed: false,
+  isUnsubscribeTagDeleting: false,
+  isSubscribeTagsFetching: false,
 };
 
 const apiSlice = createSlice({
@@ -97,6 +123,15 @@ const apiSlice = createSlice({
     }),
     allPostsRequestFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserRegistering: false, errorObject: action.payload,
+    }),
+    pendingPostsRequested: (state) => ({
+      ...state, isPendingPostsRequested: true,
+    }),
+    pendingPostsRequestSucceeded: (state) => ({
+      ...state, isPendingPostsRequested: false,
+    }),
+    pendingPostsRequestFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, errorObject: action.payload,
     }),
     userRegistrationRequested: (state) => ({
       ...state, isUserRegistering: true,
@@ -133,6 +168,24 @@ const apiSlice = createSlice({
     }),
     userPatchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isUserPatching: false, errorObject: action.payload,
+    }),
+    usersFetchRequested: (state) => ({
+      ...state, isUsersFetching: true,
+    }),
+    usersFetchSucceeded: (state) => ({
+      ...state, isUsersFetching: false,
+    }),
+    usersFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUsersFetching: false, errorObject: action.payload,
+    }),
+    userRolesPatchRequested: (state) => ({
+      ...state, isUserRolesPatching: true,
+    }),
+    userRolesPatchSucceeded: (state) => ({
+      ...state, isUserRolesPatching: false,
+    }),
+    userRolesPatchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUserRolesPatching: false, errorObject: action.payload,
     }),
     publicFeedRequested: (state) => ({
       ...state, isPublicFeedFetching: true,
@@ -218,6 +271,33 @@ const apiSlice = createSlice({
     articlePatchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isArticlePatching: false, errorObject: action.payload,
     }),
+    articlePublishRequested: (state) => ({
+      ...state, isArticlePublishing: true,
+    }),
+    articlePublishSucceeded: (state) => ({
+      ...state, isArticlePublishing: false, isArticlePublishingSucceeded: true,
+    }),
+    articlePublishFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticlePublishing: false, errorObject: action.payload,
+    }),
+    articleDeclineRequested: (state) => ({
+      ...state, isArticleDeclining: true,
+    }),
+    articleDeclineSucceeded: (state) => ({
+      ...state, isArticleDeclining: false, isArticleDecliningSucceeded: true,
+    }),
+    articleDeclineFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticleDeclining: false, errorObject: action.payload,
+    }),
+    articleRemovePublishRequested: (state) => ({
+      ...state, isArticleRemovePublishing: true,
+    }),
+    articleRemovePublishSucceeded: (state) => ({
+      ...state, isArticleRemovePublishing: false, isArticleRemovePublishingSucceeded: true,
+    }),
+    articleRemovePublishFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isArticleRemovePublishing: false, errorObject: action.payload,
+    }),
     likeArticlePostRequested: (state) => ({
       ...state, isLikeArticlePosting: true,
     }),
@@ -253,6 +333,15 @@ const apiSlice = createSlice({
     }),
     commentsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
       ...state, isCommentsFetching: false, errorObject: action.payload,
+    }),
+    commentsAdminFetchRequested: (state) => ({
+      ...state, isCommentsAdminFetching: true,
+    }),
+    commentsAdminFetchSucceeded: (state) => ({
+      ...state, isCommentsAdminFetching: false,
+    }),
+    commentsAdminFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isCommentsAdminFetching: false, errorObject: action.payload,
     }),
     commentPostRequested: (state) => ({
       ...state, isCommentPosting: true,
@@ -320,6 +409,42 @@ const apiSlice = createSlice({
       isSettingsUpdateSucceeded: false,
       errorObject: action.payload,
     }),
+    subscribeTagRequested: (state) => ({
+      ...state, isTagSubscribed: true,
+    }),
+    subscribeTagSucceeded: (state) => ({
+      ...state, isTagSubscribed: false,
+    }),
+    subscribeTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isTagSubscribed: false, errorObject: action.payload,
+    }),
+    unsubscribeTagRequested: (state) => ({
+      ...state, isUnsubscribeTagDeleting: true,
+    }),
+    unsubscribeTagSucceeded: (state) => ({
+      ...state, isUnsubscribeTagDeleting: false,
+    }),
+    unsubscribeTagFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isUnsubscribeTagDeleting: false, errorObject: action.payload,
+    }),
+    subscribeTagsFetchRequested: (state) => ({
+      ...state, isSubscribeTagsFetching: true,
+    }),
+    subscribeTagsFetchSucceeded: (state) => ({
+      ...state, isSubscribeTagsFetching: false,
+    }),
+    subscribeTagsFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isSubscribeTagsFetching: false, errorObject: action.payload,
+    }),
+    inviteCodeFetchRequested: (state) => ({
+      ...state, isInviteCodeFetching: true,
+    }),
+    inviteCodeFetchSucceeded: (state) => ({
+      ...state, isinviteCodeFetching: false,
+    }),
+    inviteCodeFetchFailed: (state, action: PayloadAction<TAPIError>) => ({
+      ...state, isInviteCodeFetching: false, errorObject: action.payload,
+    }),
   },
 });
 
@@ -343,6 +468,12 @@ export const {
   userPatchRequested,
   userPatchSucceeded,
   userPatchFailed,
+  usersFetchRequested,
+  usersFetchSucceeded,
+  usersFetchFailed,
+  userRolesPatchRequested,
+  userRolesPatchSucceeded,
+  userRolesPatchFailed,
   publicFeedRequested,
   publicFeedSucceeded,
   publicFeedFailed,
@@ -361,6 +492,15 @@ export const {
   articlePatchRequested,
   articlePatchSucceeded,
   articlePatchFailed,
+  articlePublishRequested,
+  articlePublishSucceeded,
+  articlePublishFailed,
+  articleDeclineRequested,
+  articleDeclineSucceeded,
+  articleDeclineFailed,
+  articleRemovePublishRequested,
+  articleRemovePublishSucceeded,
+  articleRemovePublishFailed,
   likeArticlePostRequested,
   likeArticlePostSucceeded,
   likeArticlePostFailed,
@@ -373,6 +513,9 @@ export const {
   commentsFetchRequested,
   commentsFetchSucceeded,
   commentsFetchFailed,
+  commentsAdminFetchRequested,
+  commentsAdminFetchSucceeded,
+  commentsAdminFetchFailed,
   commentPostRequested,
   commentPostSucceeded,
   commentPostFailed,
@@ -395,6 +538,9 @@ export const {
   allPostsRequested,
   allPostsRequestSucceeded,
   allPostsRequestFailed,
+  pendingPostsRequested,
+  pendingPostsRequestSucceeded,
+  pendingPostsRequestFailed,
   setArticleFetchNotFound,
   clearArticleFetchNotFound,
   clearProfileFetchNotFound,
@@ -402,5 +548,17 @@ export const {
   articleDeleteClear,
   articlePatchClear,
   articlePostClear,
+  subscribeTagRequested,
+  subscribeTagSucceeded,
+  subscribeTagFailed,
+  unsubscribeTagRequested,
+  unsubscribeTagSucceeded,
+  unsubscribeTagFailed,
+  subscribeTagsFetchRequested,
+  subscribeTagsFetchSucceeded,
+  subscribeTagsFetchFailed,
+  inviteCodeFetchRequested,
+  inviteCodeFetchSucceeded,
+  inviteCodeFetchFailed,
 } = apiSlice.actions;
 export default apiReducer;

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import {
@@ -8,6 +8,7 @@ import {
 
 import {
   EditIcon,
+  CheckIcon,
   AvatarIcon,
   DeleteIcon,
   PlusIcon,
@@ -29,7 +30,6 @@ type TBasicButtonProps = {
 };
 
 export const BasicNormalButton = styled.button<TBasicButtonProps>`
- // width: 100%;
   padding: 8px 16px;
   border-radius: 4px;
   border-width: 0;
@@ -51,6 +51,12 @@ export const BasicNormalButton = styled.button<TBasicButtonProps>`
     background-color: ${({ colorScheme, theme: { button }, disabled }) => getPropOnCondition(disabled, button[colorScheme].active, button[colorScheme].disabled)};
     }
   `;
+
+const RemovePublishNormalButton = styled(BasicNormalButton)`
+    @media (max-width: 640px) {
+      margin-top: 16px;
+}
+`;
 
 const BasicInvertedButton = styled.button<TBasicButtonProps>`
   padding: 8px 16px;
@@ -115,7 +121,67 @@ export const EditPostButton : FC<TButtonProps> = ({ onClick, disabled = false })
     </BasicNormalButton>
   );
 };
-export const DeletePostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+
+export const PublishAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  return (
+    <BasicNormalButton
+      colorScheme='blue'
+      disabled={disabled}
+      onClick={onClick}>
+      <RegularText size='large' weight={400} sansSerif>
+        <FormattedMessage id='publish' />
+      </RegularText>
+    </BasicNormalButton>
+  );
+};
+
+export const RejectAdminPostButton : FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <BasicNormalButton
+      colorScheme='red'
+      disabled={disabled}
+      onClick={onClick}>
+      <RegularText size='large' weight={400} sansSerif>
+        <FormattedMessage id='decline' />
+      </RegularText>
+    </BasicNormalButton>
+  );
+};
+
+export const PublishedAdminPostButton : FC<Omit<TButtonProps, 'onClick'>> = ({ disabled = true }) => {
+  return (
+    <BasicNormalButton
+      colorScheme='blue'
+      disabled={disabled}>
+      <RegularText size='large' weight={400} sansSerif>
+        <FormattedMessage id='published' />
+      </RegularText>
+    </BasicNormalButton>
+  );
+};
+
+export const RemovePublicationAdminPostButton: FC<TButtonProps> = ({
+  onClick,
+  disabled = false,
+}) => {
+  const theme = useTheme();
+  return (
+    <RemovePublishNormalButton
+      colorScheme='red'
+      disabled={disabled}
+      onClick={onClick}>
+      <RegularText size='large' weight={400} sansSerif>
+        <FormattedMessage id='removePublish' />
+      </RegularText>
+    </RemovePublishNormalButton>
+  );
+};
+
+export const DeletePostButton : FC<TButtonProps> = ({
+  onClick,
+  disabled = false,
+}) => {
   const theme = useTheme();
   const {
     status: {
@@ -212,6 +278,13 @@ export const ConfirmDeleteButton : FC<TButtonProps> = ({ onClick, disabled = fal
     </RegularText>
   </BasicNormalButton>
 );
+export const ConfirmDeleteButtonModal : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='OK' />
+    </RegularText>
+  </BasicNormalButton>
+);
 
 export const FollowButton: FC<TButtonProps> = ({ onClick, disabled = false }) => {
   const theme = useTheme();
@@ -241,6 +314,14 @@ export const PostCommentButton : FC<TButtonProps> = ({ onClick, disabled = false
   <BasicNormalButton colorScheme='blue' disabled={disabled} onClick={onClick}>
     <RegularText size='large' weight={500}>
       <FormattedMessage id='sendComment' />
+    </RegularText>
+  </BasicNormalButton>
+);
+
+export const GenerateInviteCode : FC<TButtonProps> = ({ onClick, disabled = false }) => (
+  <BasicNormalButton type='button' colorScheme='blue' disabled={disabled} onClick={onClick}>
+    <RegularText size='large' weight={500}>
+      <FormattedMessage id='generateInviteCode' />
     </RegularText>
   </BasicNormalButton>
 );
@@ -311,6 +392,23 @@ export const MenuNewPostButton : FC<TButtonProps> = ({ onClick, disabled = false
         distance={iconDistance} />
       <RegularText size='large' weight={500}>
         <FormattedMessage id='newArticle' />
+      </RegularText>
+    </MenuButton>
+  );
+};
+
+export const MenuAdministartionButton: FC<TButtonProps> = ({ onClick, disabled = false }) => {
+  const theme = useTheme();
+  return (
+    <MenuButton
+      colorScheme='menu'
+      disabled={disabled}
+      onClick={onClick}>
+      <CheckIcon
+        color={theme.button.menu.font}
+        distance={iconDistance} />
+      <RegularText size='large' weight={500}>
+        <FormattedMessage id='administration' />
       </RegularText>
     </MenuButton>
   );

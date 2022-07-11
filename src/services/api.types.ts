@@ -1,5 +1,6 @@
+import { string } from 'prop-types';
 import {
-  TArticle, TComment, TProfile, TTags, TUser,
+  TArticle, TComment, TProfile, TTags, TUser, TTag, TUserData, TTopTags,
 } from '../types/types';
 
 export type TAPINewUser = {
@@ -8,7 +9,8 @@ export type TAPINewUser = {
     email: string;
     password: string;
     nickname?: string;
-  }
+  },
+  invite: string
 };
 
 export type TAPIAuth = {
@@ -18,7 +20,8 @@ export type TAPIAuth = {
     bio?: string;
     image?: string;
     token: string;
-    nickname: string
+    nickname: string;
+    roles: Array<string>;
   };
 };
 
@@ -27,6 +30,10 @@ export type TAPILoginUser = {
     email: string;
     password: string;
   }
+};
+
+export type TAPIInviteCode = {
+  code: string;
 };
 
 export type TAPIUser = {
@@ -75,6 +82,10 @@ export type TAPITags = {
   tags: TTags;
 };
 
+export type TAPITopTags = {
+  tags: TTopTags;
+};
+
 export type TAPIComment = {
   comment: TComment;
 };
@@ -93,3 +104,20 @@ export type TAPIError = {
   errors: TAPIErrors;
   statusCode: number;
 };
+
+export type TAPITag = {
+  tag: TTag;
+}; 
+
+export type TAPIImageUrl = {
+  url: string;
+};
+
+export type TAPIUsers = {
+  users: TUserData [],
+  usersCount: number,
+}
+
+export type TAPIUserData = {
+  user: TUserData,
+}

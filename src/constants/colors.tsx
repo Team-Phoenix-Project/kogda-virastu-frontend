@@ -3,6 +3,8 @@ const greySecondary = '#62626A';
 const blue = '#008AFF';
 const blueHover = '#007CE5';
 const blueActive = '#006ECC';
+const greyHover = '#7A7A85';
+const greyActive = '#4B4B52';
 const red = '#FF413B';
 const redHover = '#E53B35';
 const redActive = '#CC342F';
@@ -17,6 +19,8 @@ const redAccess = '#FF1E1E';
 export {
   primaryBlack,
   greySecondary,
+  greyHover,
+  greyActive,
   blue,
   blueActive,
   blueHover,

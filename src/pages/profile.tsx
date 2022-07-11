@@ -70,11 +70,12 @@ const Profile: FC = () => {
         userName={profile.nickname ?? profile.username}
         isFollow={profile.following}
         userImage={profile.image}
+        bio={profile.bio}
         isUser={isUser}
         size='large'
         distance={0}
         color='' />
-      <FeedRibbon />
+      <FeedRibbon type='all' />
 
     </ProfilePageLayout>
 

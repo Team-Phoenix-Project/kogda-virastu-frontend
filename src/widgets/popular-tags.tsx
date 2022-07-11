@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { FC } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
+import React, { FC, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from '../services/hooks';
 import { setSelectedTags } from '../store';
 import Tag from './tag';
 import { HeaderThreeText } from '../ui-lib';
+import { TTags } from '../types/types';
+import Preloader from './preloader';
 
 const PopularTagsContainer = styled.div`
   margin-bottom: 56px;
@@ -26,8 +29,9 @@ const TagList = styled.div`
 
 const PopularTags: FC = () => {
   const dispatch = useDispatch();
-  const { tags } = useSelector((state) => state.all);
+  const { topTags } = useSelector((state) => state.all);
   const { selectedTags } = useSelector((state) => state.view);
+  const [popularTags, setPopularTags] = useState<TTags>([]);
 
   const handleClick = (ev:React.MouseEvent, tag: string) => {
     ev.preventDefault();
@@ -43,31 +47,39 @@ const PopularTags: FC = () => {
     dispatch(setSelectedTags(selectedTags!.filter((el) => el !== tag)));
   };
 
-  if (tags) {
-    return (
-      <PopularTagsContainer>
-        <HeaderThreeText paddingCSS='padding-bottom: 16px;'>
-          <FormattedMessage id='popularTags' />
-        </HeaderThreeText>
-        <TagList>
-          {
-            tags.map((tag) => (
-              <Tag
-                key={tag}
-                tag={tag}
-                pointer
-                handleClick={handleClick}
-                isActive={selectedTags?.includes(tag) || false}
-                deactivateTag={(e) => deactivateTag(e, tag)} />
-            ))
-          }
-        </TagList>
-      </PopularTagsContainer>
+  useEffect(() => {
+    const tags = topTags && topTags.map((tag) => tag.name);
+    if (tags) {
+      setPopularTags(tags);
+    }
+  }, [topTags]);
 
-    );
-  }
   return (
-    <div>Loading Tags...</div>
+    <PopularTagsContainer>
+      <HeaderThreeText paddingCSS='padding-bottom: 16px;'>
+        <FormattedMessage id='popularTags' />
+      </HeaderThreeText>
+      {
+        popularTags
+          ? (
+
+            <TagList>
+              {
+          popularTags.map((tag) => (
+            <Tag
+              key={nanoid()}
+              tag={tag}
+              pointer
+              handleClick={handleClick}
+              isActive={selectedTags?.includes(tag) || false}
+              deactivateTag={(e) => deactivateTag(e, tag)} />
+          ))
+          }
+            </TagList>
+          )
+          : <Preloader />
+}
+    </PopularTagsContainer>
   );
 };
 export default PopularTags;

@@ -19,6 +19,7 @@ export const TextFieldStyle = css<ITextFieldStyleProps>`
   outline:none;
   color: ${({ theme: { secondaryText } }) => secondaryText};
   border: 1px solid ${({ error, theme: { inputField: { defaultBorder, errorColor } } }) => (getPropOnCondition(error, defaultBorder, errorColor))};
+  border-radius: 10px;
 
   @media screen and (max-width:768px) {
   font-size: 16px;
@@ -46,6 +47,7 @@ export const LabelStyle = styled.label`
 
 const ErrorTextStyle = styled.span`
 margin: 0;
+align-self: flex-start;
 color: ${((props) => props.theme.inputField.errorColor)};
 font-size: ${({ theme: { labelInput: { size } } }) => `${size}px`} ;
 font-family: ${({ theme: { labelInput: { family } } }) => family};

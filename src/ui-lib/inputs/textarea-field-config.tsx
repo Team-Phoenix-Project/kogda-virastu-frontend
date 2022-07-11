@@ -36,7 +36,6 @@ interface ITextAreaInterface extends ITextAreaStyleProps {
   onChange: ChangeEventHandler<HTMLTextAreaElement> | undefined;
   onBlur: FocusEventHandler<HTMLTextAreaElement> | undefined;
   onFocus: FocusEventHandler<HTMLTextAreaElement> | undefined;
-
 }
 
 const TextAreaField = ({

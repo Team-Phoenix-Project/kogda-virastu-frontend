@@ -19,6 +19,10 @@ import { ReactComponent as MinusPic } from '../assets/images/icons/minus-icon.sv
 import { ReactComponent as CrossPic } from '../assets/images/icons/cross-icon.svg';
 import { ReactComponent as EyePic } from '../assets/images/icons/eye-icon.svg';
 import { ReactComponent as EyeNoPic } from '../assets/images/icons/eyeNo-icon.svg';
+import { ReactComponent as ArrowLeftPic } from '../assets/images/icons/arrow-left-icon.svg';
+import { ReactComponent as ArrowRightPic } from '../assets/images/icons/arrow-right-icon.svg';
+import { ReactComponent as PreloaderPic } from '../assets/images/icons/preloader.svg';
+import { ReactComponent as CheckBoxPic } from '../assets/images/icons/ckeckbox-icon.svg';
 
 import { getAvatarBorderProp, testImageUrl } from '../services/helpers';
 import { blue, greySecondary } from '../constants/colors';
@@ -34,6 +38,10 @@ const avatarSize : TAvatarSize = {
   large: {
     width: 230,
     height: 230,
+  },
+  medium: {
+    width: 30,
+    height: 30,
   },
   small: {
     width: 24,
@@ -164,6 +172,43 @@ export const HomeIcon = styled(HomePic)<TIconProps>`
     stroke: ${({ color }) => color};
     }
 `;
+export const PreloaderBox = styled(PreloaderPic)<TIconProps>`
+  width: 24px;
+  height: 32px;
+  display: flex;
+  cursor: pointer;
+  background-position: left;
+  align-self: start;
+  // margin-left: auto;
+  
+  color: ${({ color }) => color};
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+
+export const ArrowLeft = styled(ArrowLeftPic)<TIconProps>`
+  width: 24px;
+  height: 24px;
+  display: block;
+  cursor: ${({ color }) => { if (color === 'grey') return 'not-allowed'; return 'pointer'; }};
+  margin-left: auto;
+  color: ${({ color }) => color};
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+export const ArrowRight = styled(ArrowRightPic)<TIconProps>`
+  width: 24px;
+  height: 24px;
+  display: block;
+  cursor: ${({ color }) => { if (color === 'grey') return 'not-allowed'; return 'pointer'; }};
+  margin-right: auto;
+  color: ${({ color }) => color};
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
 
 export const LikeIcon = styled(LikePic)<TIconProps>`
   width: 24px;
@@ -249,6 +294,14 @@ export const EyeNoIcon = styled(EyeNoPic)<TIconProps>`
   height: 24px;
   display: block;
   margin-right: ${({ distance }) => distance ?? 0}px;
+  & > path {
+    stroke: ${({ color }) => color};
+    }
+`;
+
+export const CheckBoxIcon = styled(CheckBoxPic)<TIconProps>`
+  width: 12px;
+  height: 9px;
   & > path {
     stroke: ${({ color }) => color};
     }

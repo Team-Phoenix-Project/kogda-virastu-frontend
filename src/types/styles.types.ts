@@ -1,5 +1,5 @@
 import {
-  ChangeEventHandler, FocusEventHandler, MouseEventHandler,
+  ChangeEventHandler, FocusEventHandler, MouseEventHandler, RefObject,
 } from 'react';
 
 export type TColorSet = {
@@ -28,6 +28,9 @@ export type TTheme = {
     borderActive: string;
     disabledInput: string;
     errorColor: string;
+    checkBox: string,
+    checkBoxHover: string,
+    checkBoxActive: string,
   },
   button: {
     [key: string]: TColorSet,
@@ -75,7 +78,7 @@ export type TButtonProps = {
   disabled?: boolean;
 };
 
-export type TAvatarSizes = 'large' | 'small';
+export type TAvatarSizes = 'large' | 'medium' | 'small';
 
 export type TAvatarIconProps = {
   size: TAvatarSizes;
@@ -143,9 +146,17 @@ export type TFieldInput = {
   value: string;
   placeholder?: string;
   error?: boolean;
+  minLength?: number;
+  maxLength?: number;
   disabled?: boolean;
+  required?: boolean;
   errorText?: string;
   onFocus?: FocusEventHandler<HTMLInputElement>;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange: ChangeEventHandler<HTMLInputElement>;
 };
+
+export type TFileInput = {
+  fileInputRef: RefObject<HTMLInputElement>
+  onSelectFile: ChangeEventHandler<HTMLInputElement>
+}

@@ -1,6 +1,6 @@
 import { batch } from 'react-redux';
 import { AxiosError } from 'axios';
-import { fetchPublicFeed } from '../services/api';
+import { fetchTopFeed } from '../services/api';
 import {
   allPostsRequested,
   allPostsRequestSucceeded,
@@ -10,11 +10,11 @@ import { AppThunk } from '../store/store.types';
 import { makeErrorObject } from '../services/helpers';
 import { TAPIError } from '../services/api.types';
 
-const getAllPostsThunk: AppThunk = () => async (dispatch) => {
+const getAllTopPostsThunk: AppThunk = () => async (dispatch) => {
   try {
     dispatch(allPostsRequested());
     const
-      { data: { articles, articlesCount } } = await fetchPublicFeed();
+      { data: { articles, articlesCount } } = await fetchTopFeed();
     batch(() => {
       dispatch(setAllArticles(articles));
       dispatch(setAllArticlesCount(articlesCount));
@@ -25,4 +25,4 @@ const getAllPostsThunk: AppThunk = () => async (dispatch) => {
   }
 };
 
-export default getAllPostsThunk;
+export default getAllTopPostsThunk;

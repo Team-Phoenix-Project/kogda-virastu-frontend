@@ -5,12 +5,13 @@ import {
   articlePatchSucceeded,
   articlePatchFailed,
 } from '../store';
-import { patchArticle } from '../services/api';
+import { patchArticle, uploadImage } from '../services/api';
 import { makeErrorObject } from '../services/helpers';
 import makeTagList from '../services/helpers/make-tagList';
 import { TAPIError } from '../services/api.types';
+import { API_ROOT } from '../constants/api.constants';
 
-const patchArticleThunk: AppThunk = (slug: string) => async (dispatch, getState) => {
+const patchArticleThunk: AppThunk = (slug: string, file: File) => async (dispatch, getState) => {
   dispatch(articlePatchRequested());
   const articleData = getState().forms.article ?? {};
   const {
@@ -18,14 +19,26 @@ const patchArticleThunk: AppThunk = (slug: string) => async (dispatch, getState)
   } = articleData;
   const tagList = makeTagList(articleData.tags || '');
   try {
-    await patchArticle(slug, {
-      title,
-      description,
-      body,
-      tagList,
-      link,
-    });
-    dispatch(articlePatchSucceeded());
+    if (file) {
+      const { data: { url } } = await uploadImage(file);
+      await patchArticle(slug, {
+        title,
+        description,
+        body,
+        tagList,
+        link: `${API_ROOT}${url}`,
+      });
+      dispatch(articlePatchSucceeded());
+    } else {
+      await patchArticle(slug, {
+        title,
+        description,
+        body,
+        tagList,
+        link,
+      });
+      dispatch(articlePatchSucceeded());
+    }
   } catch (error) {
     dispatch(
       articlePatchFailed(makeErrorObject(error as AxiosError<TAPIError>)),

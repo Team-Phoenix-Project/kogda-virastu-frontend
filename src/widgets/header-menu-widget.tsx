@@ -1,11 +1,12 @@
-import React, { FC, MouseEventHandler } from 'react';
+import React, { FC, MouseEventHandler, useMemo } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { batch } from 'react-redux';
 import { jwt } from '../services/api';
+import { ADMIN_ROLE } from '../constants/roles';
 
 import {
-  OpenMenuButton, MenuSettingsButton, MenuNewPostButton, MenuLogoutButton,
+  OpenMenuButton, MenuSettingsButton, MenuAdministartionButton, MenuNewPostButton, MenuLogoutButton,
 } from '../ui-lib';
 import { useDispatch, useSelector } from '../services/hooks';
 import {
@@ -35,12 +36,18 @@ const HeaderMenuWidget : FC = () => {
   const navigate = useNavigate();
   const { nickname, username, image } = useSelector((store) => store.profile);
   const { isLoggedIn } = useSelector((state) => state.system);
+  const roles = useSelector((state) => state.profile.roles);
+  const isAdmin = useMemo(() => (
+    roles?.includes(ADMIN_ROLE)
+  ), [roles]);
+
   const onProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate(`/profile/${username || ''}`);
   const onUpdateProfileClick : MouseEventHandler<HTMLButtonElement> = () => navigate('/settings');
   const onNewPostClick : MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(clearViewArticle());
     navigate('/editArticle');
   };
+  const onAdministrationClick: MouseEventHandler<HTMLButtonElement> = () => navigate('/admin');
   const onLogoutClick : MouseEventHandler<HTMLButtonElement> = () => {
     batch(() => {
       dispatch(onLogout());
@@ -59,6 +66,7 @@ const HeaderMenuWidget : FC = () => {
       <OpenMenuButton onClick={onProfileClick} name={(nickname ?? username) || ''} image={image || ''} />
       <MenuNewPostButton onClick={onNewPostClick} />
       <MenuSettingsButton onClick={onUpdateProfileClick} />
+      {isAdmin && <MenuAdministartionButton onClick={onAdministrationClick} />}
       <MenuLogoutButton onClick={onLogoutClick} />
     </HeaderMenuWrapper>
   );
